@@ -1,0 +1,14 @@
+name: adaptive_formula
+description: adapts the size of elements based on initial Figma screen size and device screen size
+version: 1.0.0
+license: LGPL v2/v3
+homepage: https://github.com/bgoncharuck/adaptive_formula
+
+environment:
+  sdk: ">=2.14.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
