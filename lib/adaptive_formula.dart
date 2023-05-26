@@ -370,3 +370,111 @@ class AdaptiveSquareDecorated extends StatelessWidget {
   }
 }
 
+class Pos extends StatelessWidget {
+  const Pos({
+    this.align = Alignment.topCenter,
+    this.inset = EdgeInsets.zero,
+    required this.child,
+    super.key,
+  });
+  final AlignmentGeometry align;
+  final EdgeInsetsGeometry inset;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: align,
+      child: Padding(
+        padding: inset,
+        child: child,
+      ),
+    );
+  }
+}
+
+class AdaptiveList extends StatelessWidget {
+  const AdaptiveList({
+    super.key,
+    required this.elementHeight,
+    required this.elementSpacing,
+    required this.children,
+  });
+  final double elementHeight;
+  final double elementSpacing;
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    final count = children.length;
+    final positionedChildren = <Widget>[];
+    for (int i = 0; i < children.length; i++) {
+      positionedChildren.add(
+        _AdaptiveListPos(
+          index: i,
+          elementHeight: elementHeight,
+          elementSpacing: elementSpacing,
+          child: children[i],
+        ),
+      );
+    }
+
+    return SizedBox(
+      height: adaptiveHeight(elementHeight) * count + elementSpacing * (count - 1),
+      child: Stack(
+        children: positionedChildren,
+      ),
+    );
+  }
+}
+
+class _AdaptiveListPos extends StatelessWidget {
+  const _AdaptiveListPos({
+    required this.index,
+    required this.elementHeight,
+    required this.elementSpacing,
+    required this.child,
+  });
+  final int index;
+  final double elementHeight;
+  final double elementSpacing;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.topCenter,
+      child: Padding(
+          padding: EdgeInsets.only(
+            top: (adaptiveHeight(elementHeight) + adaptiveHeight(elementSpacing)) * index,
+          ),
+          child: child),
+    );
+  }
+}
+
+const voidWidget = _VoidWidget();
+
+class _VoidWidget extends Widget {
+  const _VoidWidget();
+
+  @override
+  Element createElement() => _VoidWidgetElement(this);
+}
+
+class _VoidWidgetElement extends Element {
+  _VoidWidgetElement(_VoidWidget widget) : super(widget);
+
+  @override
+  void mount(Element? parent, dynamic newSlot) {
+    super.mount(parent, newSlot);
+  }
+
+  @override
+  bool get debugDoingBuild => false;
+
+  @override
+  void performRebuild() {
+    super.performRebuild();
+  }
+}
