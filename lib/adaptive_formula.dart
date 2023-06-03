@@ -88,8 +88,8 @@ class AdaptiveSize extends StatelessWidget {
     this.width,
     this.height,
     required this.child,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
   final double? width;
   final double? height;
   final Widget child;
@@ -108,8 +108,8 @@ class AdaptiveWidth extends StatelessWidget {
   const AdaptiveWidth({
     required this.width,
     required this.child,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
   final double width;
   final Widget child;
 
@@ -126,8 +126,8 @@ class AdaptiveHeight extends StatelessWidget {
   const AdaptiveHeight({
     required this.height,
     required this.child,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
   final double height;
   final Widget child;
 
@@ -144,8 +144,8 @@ class AdaptiveSquare extends StatelessWidget {
   const AdaptiveSquare({
     required this.size,
     required this.child,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
   final double size;
   final Widget child;
 
@@ -163,8 +163,8 @@ class AdaptiveSquareHeight extends StatelessWidget {
   const AdaptiveSquareHeight({
     required this.size,
     required this.child,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
   final double size;
   final Widget child;
 
@@ -184,8 +184,8 @@ class AdaptiveSizeColored extends StatelessWidget {
     this.height,
     required this.color,
     required this.child,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
   final double? width;
   final double? height;
   final Color color;
@@ -209,8 +209,8 @@ class AdaptiveWidthColored extends StatelessWidget {
     required this.width,
     required this.color,
     required this.child,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
   final double width;
   final Color color;
   final Widget child;
@@ -232,8 +232,8 @@ class AdaptiveHeightColored extends StatelessWidget {
     required this.height,
     required this.color,
     required this.child,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
   final double height;
   final Color color;
   final Widget child;
@@ -255,8 +255,8 @@ class AdaptiveSquareColored extends StatelessWidget {
     required this.size,
     required this.color,
     required this.child,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
   final double size;
   final Color color;
   final Widget child;
@@ -280,8 +280,8 @@ class AdaptiveSizeDecorated extends StatelessWidget {
     this.height,
     required this.decoration,
     required this.child,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
   final double? width;
   final double? height;
   final BoxDecoration decoration;
@@ -305,8 +305,8 @@ class AdaptiveWidthDecorated extends StatelessWidget {
     required this.width,
     required this.decoration,
     required this.child,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
   final double width;
   final BoxDecoration decoration;
   final Widget child;
@@ -328,8 +328,8 @@ class AdaptiveHeightDecorated extends StatelessWidget {
     required this.height,
     required this.decoration,
     required this.child,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
   final double height;
   final BoxDecoration decoration;
   final Widget child;
@@ -351,8 +351,8 @@ class AdaptiveSquareDecorated extends StatelessWidget {
     required this.size,
     required this.decoration,
     required this.child,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
   final double size;
   final BoxDecoration decoration;
   final Widget child;
@@ -375,8 +375,8 @@ class Position extends StatelessWidget {
     this.align = Alignment.topCenter,
     this.inset = EdgeInsets.zero,
     required this.child,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
   final AlignmentGeometry align;
   final EdgeInsetsGeometry inset;
   final Widget child;
@@ -395,11 +395,11 @@ class Position extends StatelessWidget {
 
 class AdaptiveList extends StatelessWidget {
   const AdaptiveList({
-    super.key,
+    Key? key,
     required this.elementHeight,
     required this.elementSpacing,
     required this.children,
-  });
+  }) : super(key: key);
   final double elementHeight;
   final double elementSpacing;
   final List<Widget> children;
