@@ -26,6 +26,18 @@ void adaptiveFormulaInitFromSize({
   _deviceScreenHeight = deviceScreenSize.height;
 }
 
+void adaptiveFormulaInitFromBinding({
+  required WidgetsBinding binding,
+  Size figmaScreenSize = _defaultFigmaScreenSize,
+}) =>
+    adaptiveFormulaInitFromSize(
+      deviceScreenSize: Size(
+        WidgetsBinding.instance.window.physicalSize.width,
+        WidgetsBinding.instance.window.physicalSize.height,
+      ),
+      figmaScreenSize: figmaScreenSize,
+    );
+
 late double _deviceScreenWidth;
 late double _deviceScreenHeight;
 late double _figmaScreenWidth;
