@@ -27,13 +27,12 @@ void adaptiveFormulaInitFromSize({
 }
 
 void adaptiveFormulaInitFromBinding({
-  required WidgetsBinding binding,
   Size figmaScreenSize = _defaultFigmaScreenSize,
 }) =>
     adaptiveFormulaInitFromSize(
       deviceScreenSize: Size(
-        WidgetsBinding.instance.window.physicalSize.width,
-        WidgetsBinding.instance.window.physicalSize.height,
+        MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.width,
+        MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.height,
       ),
       figmaScreenSize: figmaScreenSize,
     );
