@@ -370,8 +370,8 @@ class AdaptiveSquareDecorated extends StatelessWidget {
   }
 }
 
-class Pos extends StatelessWidget {
-  const Pos({
+class Position extends StatelessWidget {
+  const Position({
     this.align = Alignment.topCenter,
     this.inset = EdgeInsets.zero,
     required this.child,
