@@ -87,12 +87,12 @@ class AdaptiveSize extends StatelessWidget {
   const AdaptiveSize({
     this.width,
     this.height,
-    required this.child,
+    this.child,
     Key? key,
   }) : super(key: key);
   final double? width;
   final double? height;
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -107,11 +107,11 @@ class AdaptiveSize extends StatelessWidget {
 class AdaptiveWidth extends StatelessWidget {
   const AdaptiveWidth({
     required this.width,
-    required this.child,
+    this.child,
     Key? key,
   }) : super(key: key);
   final double width;
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -125,11 +125,11 @@ class AdaptiveWidth extends StatelessWidget {
 class AdaptiveHeight extends StatelessWidget {
   const AdaptiveHeight({
     required this.height,
-    required this.child,
+    this.child,
     Key? key,
   }) : super(key: key);
   final double height;
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -143,11 +143,11 @@ class AdaptiveHeight extends StatelessWidget {
 class AdaptiveSquare extends StatelessWidget {
   const AdaptiveSquare({
     required this.size,
-    required this.child,
+    this.child,
     Key? key,
   }) : super(key: key);
   final double size;
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -162,11 +162,11 @@ class AdaptiveSquare extends StatelessWidget {
 class AdaptiveSquareHeight extends StatelessWidget {
   const AdaptiveSquareHeight({
     required this.size,
-    required this.child,
+    this.child,
     Key? key,
   }) : super(key: key);
   final double size;
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -183,13 +183,13 @@ class AdaptiveSizeColored extends StatelessWidget {
     this.width,
     this.height,
     required this.color,
-    required this.child,
+    this.child,
     Key? key,
   }) : super(key: key);
   final double? width;
   final double? height;
   final Color color;
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -208,12 +208,12 @@ class AdaptiveWidthColored extends StatelessWidget {
   const AdaptiveWidthColored({
     required this.width,
     required this.color,
-    required this.child,
+    this.child,
     Key? key,
   }) : super(key: key);
   final double width;
   final Color color;
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -231,12 +231,12 @@ class AdaptiveHeightColored extends StatelessWidget {
   const AdaptiveHeightColored({
     required this.height,
     required this.color,
-    required this.child,
+    this.child,
     Key? key,
   }) : super(key: key);
   final double height;
   final Color color;
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -254,12 +254,12 @@ class AdaptiveSquareColored extends StatelessWidget {
   const AdaptiveSquareColored({
     required this.size,
     required this.color,
-    required this.child,
+    this.child,
     Key? key,
   }) : super(key: key);
   final double size;
   final Color color;
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -279,13 +279,13 @@ class AdaptiveSizeDecorated extends StatelessWidget {
     this.width,
     this.height,
     required this.decoration,
-    required this.child,
+    this.child,
     Key? key,
   }) : super(key: key);
   final double? width;
   final double? height;
   final BoxDecoration decoration;
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -304,12 +304,12 @@ class AdaptiveWidthDecorated extends StatelessWidget {
   const AdaptiveWidthDecorated({
     required this.width,
     required this.decoration,
-    required this.child,
+    this.child,
     Key? key,
   }) : super(key: key);
   final double width;
   final BoxDecoration decoration;
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -327,12 +327,12 @@ class AdaptiveHeightDecorated extends StatelessWidget {
   const AdaptiveHeightDecorated({
     required this.height,
     required this.decoration,
-    required this.child,
+    this.child,
     Key? key,
   }) : super(key: key);
   final double height;
   final BoxDecoration decoration;
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -350,12 +350,12 @@ class AdaptiveSquareDecorated extends StatelessWidget {
   const AdaptiveSquareDecorated({
     required this.size,
     required this.decoration,
-    required this.child,
+    this.child,
     Key? key,
   }) : super(key: key);
   final double size;
   final BoxDecoration decoration;
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -374,12 +374,12 @@ class Position extends StatelessWidget {
   const Position({
     this.align = Alignment.topCenter,
     this.inset = EdgeInsets.zero,
-    required this.child,
+    this.child,
     Key? key,
   }) : super(key: key);
   final AlignmentGeometry align;
   final EdgeInsetsGeometry inset;
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -433,12 +433,12 @@ class _AdaptiveListPos extends StatelessWidget {
     required this.index,
     required this.elementHeight,
     required this.elementSpacing,
-    required this.child,
+    this.child,
   });
   final int index;
   final double elementHeight;
   final double elementSpacing;
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
