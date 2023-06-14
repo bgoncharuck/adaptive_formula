@@ -79,6 +79,32 @@ EdgeInsetsGeometry adaptiveInset({
       bottom == null ? 0 : adaptiveHeight(bottom),
     );
 
+EdgeInsetsGeometry adaptiveInsetOnWidth({
+  double? left,
+  double? top,
+  double? right,
+  double? bottom,
+}) =>
+    EdgeInsets.fromLTRB(
+      left == null ? 0 : adaptiveWidth(left),
+      top == null ? 0 : adaptiveWidth(top),
+      right == null ? 0 : adaptiveWidth(right),
+      bottom == null ? 0 : adaptiveWidth(bottom),
+    );
+
+EdgeInsetsGeometry adaptiveInsetOnHeight({
+  double? left,
+  double? top,
+  double? right,
+  double? bottom,
+}) =>
+    EdgeInsets.fromLTRB(
+      left == null ? 0 : adaptiveHeight(left),
+      top == null ? 0 : adaptiveHeight(top),
+      right == null ? 0 : adaptiveHeight(right),
+      bottom == null ? 0 : adaptiveHeight(bottom),
+    );
+
 EdgeInsetsGeometry adaptiveSymmetricInset({
   double? horizontal,
   double? vertical,
@@ -87,6 +113,25 @@ EdgeInsetsGeometry adaptiveSymmetricInset({
       horizontal: horizontal == null ? 0 : adaptiveWidth(horizontal),
       vertical: vertical == null ? 0 : adaptiveHeight(vertical),
     );
+
+EdgeInsetsGeometry adaptiveSymmetricInsetOnWidth({
+  double? horizontal,
+  double? vertical,
+}) =>
+    EdgeInsets.symmetric(
+      horizontal: horizontal == null ? 0 : adaptiveWidth(horizontal),
+      vertical: vertical == null ? 0 : adaptiveWidth(vertical),
+    );
+
+EdgeInsetsGeometry adaptiveSymmetricInsetOnHeight({
+  double? horizontal,
+  double? vertical,
+}) =>
+    EdgeInsets.symmetric(
+      horizontal: horizontal == null ? 0 : adaptiveHeight(horizontal),
+      vertical: vertical == null ? 0 : adaptiveHeight(vertical),
+    );
+
 
 Size adaptiveSize(double width, double height) => Size(adaptiveWidth(width), adaptiveHeight(height));
 
