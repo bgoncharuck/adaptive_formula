@@ -1,7 +1,5 @@
 library adaptive_formula;
 
-// ignore_for_file: use_super_parameters
-
 import 'package:flutter/widgets.dart';
 
 const _defaultFigmaScreenSize = Size(375, 812);
@@ -158,8 +156,8 @@ class AdaptiveSize extends StatelessWidget {
     this.width,
     this.height,
     this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final double? width;
   final double? height;
   final Widget? child;
@@ -178,8 +176,8 @@ class AdaptiveWidth extends StatelessWidget {
   const AdaptiveWidth({
     required this.width,
     this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final double width;
   final Widget? child;
 
@@ -196,8 +194,8 @@ class AdaptiveHeight extends StatelessWidget {
   const AdaptiveHeight({
     required this.height,
     this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final double height;
   final Widget? child;
 
@@ -214,8 +212,8 @@ class AdaptiveSquare extends StatelessWidget {
   const AdaptiveSquare({
     required this.size,
     this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final double size;
   final Widget? child;
 
@@ -233,8 +231,8 @@ class AdaptiveSquareHeight extends StatelessWidget {
   const AdaptiveSquareHeight({
     required this.size,
     this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final double size;
   final Widget? child;
 
@@ -254,8 +252,8 @@ class AdaptiveSizeColored extends StatelessWidget {
     this.width,
     this.height,
     this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final double? width;
   final double? height;
   final Color color;
@@ -279,8 +277,8 @@ class AdaptiveWidthColored extends StatelessWidget {
     required this.width,
     required this.color,
     this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final double width;
   final Color color;
   final Widget? child;
@@ -302,8 +300,8 @@ class AdaptiveHeightColored extends StatelessWidget {
     required this.height,
     required this.color,
     this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final double height;
   final Color color;
   final Widget? child;
@@ -325,8 +323,8 @@ class AdaptiveSquareColored extends StatelessWidget {
     required this.size,
     required this.color,
     this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final double size;
   final Color color;
   final Widget? child;
@@ -350,8 +348,8 @@ class AdaptiveSizeDecorated extends StatelessWidget {
     this.width,
     this.height,
     this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final double? width;
   final double? height;
   final BoxDecoration decoration;
@@ -375,8 +373,8 @@ class AdaptiveWidthDecorated extends StatelessWidget {
     required this.width,
     required this.decoration,
     this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final double width;
   final BoxDecoration decoration;
   final Widget? child;
@@ -398,8 +396,8 @@ class AdaptiveHeightDecorated extends StatelessWidget {
     required this.height,
     required this.decoration,
     this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final double height;
   final BoxDecoration decoration;
   final Widget? child;
@@ -421,8 +419,8 @@ class AdaptiveSquareDecorated extends StatelessWidget {
     required this.size,
     required this.decoration,
     this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final double size;
   final BoxDecoration decoration;
   final Widget? child;
@@ -445,8 +443,8 @@ class Position extends StatelessWidget {
     this.align = Alignment.topCenter,
     this.inset = EdgeInsets.zero,
     this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final AlignmentGeometry align;
   final EdgeInsetsGeometry inset;
   final Widget? child;
@@ -468,8 +466,8 @@ class AdaptiveList extends StatelessWidget {
     required this.elementHeight,
     required this.elementSpacing,
     required this.children,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final double elementHeight;
   final double elementSpacing;
   final List<Widget> children;
@@ -534,7 +532,7 @@ class _VoidWidget extends Widget {
 }
 
 class _VoidWidgetElement extends Element {
-  _VoidWidgetElement(_VoidWidget widget) : super(widget);
+  _VoidWidgetElement(_VoidWidget super.widget);
 
   @override
   void mount(Element? parent, dynamic newSlot) {
