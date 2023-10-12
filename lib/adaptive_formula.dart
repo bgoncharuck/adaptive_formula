@@ -1,6 +1,8 @@
 library adaptive_formula;
 
-import 'package:flutter/material.dart';
+// ignore_for_file: use_super_parameters
+
+import 'package:flutter/widgets.dart';
 
 const _defaultFigmaScreenSize = Size(375, 812);
 
@@ -26,13 +28,25 @@ void adaptiveFormulaInitFromSize({
   _deviceScreenHeight = deviceScreenSize.height;
 }
 
-void adaptiveFormulaInitFromBinding({
+void adaptiveFormulaInitFromWindow({
   Size figmaScreenSize = _defaultFigmaScreenSize,
 }) =>
     adaptiveFormulaInitFromSize(
       deviceScreenSize: Size(
-        MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.width,
-        MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.height,
+        WidgetsBinding.instance.platformDispatcher.views.first.physicalSize.width,
+        WidgetsBinding.instance.platformDispatcher.views.first.physicalSize.height,
+      ),
+      figmaScreenSize: figmaScreenSize,
+    );
+
+void adaptiveFormulaInitFromBinding({
+  required WidgetsBinding binding,
+  Size figmaScreenSize = _defaultFigmaScreenSize,
+}) =>
+    adaptiveFormulaInitFromSize(
+      deviceScreenSize: Size(
+        binding.platformDispatcher.views.first.physicalSize.width,
+        binding.platformDispatcher.views.first.physicalSize.height,
       ),
       figmaScreenSize: figmaScreenSize,
     );
@@ -51,7 +65,8 @@ double adaptiveFontSize(TextStyle textStyle, {double? screenWidth}) =>
 double adaptiveFontSizeRaw(double fontSize, {double? screenWidth}) =>
     ((screenWidth ?? _deviceScreenWidth) * fontSize / _figmaScreenWidth).floor().toDouble();
 TextStyle adaptiveTextStyle(TextStyle textStyle, {double? screenWidth}) => textStyle.copyWith(
-    fontSize: ((screenWidth ?? _deviceScreenWidth) * textStyle.fontSize! / _figmaScreenWidth).floor().toDouble());
+      fontSize: ((screenWidth ?? _deviceScreenWidth) * textStyle.fontSize! / _figmaScreenWidth).floor().toDouble(),
+    );
 
 EdgeInsetsGeometry adaptiveLTRB(
   double left,
@@ -131,7 +146,6 @@ EdgeInsetsGeometry adaptiveSymmetricInsetOnHeight({
       horizontal: horizontal == null ? 0 : adaptiveHeight(horizontal),
       vertical: vertical == null ? 0 : adaptiveHeight(vertical),
     );
-
 
 Size adaptiveSize(double width, double height) => Size(adaptiveWidth(width), adaptiveHeight(height));
 
@@ -236,9 +250,9 @@ class AdaptiveSquareHeight extends StatelessWidget {
 
 class AdaptiveSizeColored extends StatelessWidget {
   const AdaptiveSizeColored({
+    required this.color,
     this.width,
     this.height,
-    required this.color,
     this.child,
     Key? key,
   }) : super(key: key);
@@ -332,9 +346,9 @@ class AdaptiveSquareColored extends StatelessWidget {
 
 class AdaptiveSizeDecorated extends StatelessWidget {
   const AdaptiveSizeDecorated({
+    required this.decoration,
     this.width,
     this.height,
-    required this.decoration,
     this.child,
     Key? key,
   }) : super(key: key);
@@ -451,10 +465,10 @@ class Position extends StatelessWidget {
 
 class AdaptiveList extends StatelessWidget {
   const AdaptiveList({
-    Key? key,
     required this.elementHeight,
     required this.elementSpacing,
     required this.children,
+    Key? key,
   }) : super(key: key);
   final double elementHeight;
   final double elementSpacing;
@@ -464,7 +478,7 @@ class AdaptiveList extends StatelessWidget {
   Widget build(BuildContext context) {
     final count = children.length;
     final positionedChildren = <Widget>[];
-    for (int i = 0; i < children.length; i++) {
+    for (var i = 0; i < children.length; i++) {
       positionedChildren.add(
         _AdaptiveListPos(
           index: i,
@@ -501,10 +515,11 @@ class _AdaptiveListPos extends StatelessWidget {
     return Align(
       alignment: Alignment.topCenter,
       child: Padding(
-          padding: EdgeInsets.only(
-            top: (adaptiveHeight(elementHeight) + adaptiveHeight(elementSpacing)) * index,
-          ),
-          child: child),
+        padding: EdgeInsets.only(
+          top: (adaptiveHeight(elementHeight) + adaptiveHeight(elementSpacing)) * index,
+        ),
+        child: child,
+      ),
     );
   }
 }
