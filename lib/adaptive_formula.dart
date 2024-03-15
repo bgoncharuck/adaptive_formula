@@ -440,7 +440,7 @@ class AdaptiveSquareDecorated extends StatelessWidget {
 
 class Position extends StatelessWidget {
   const Position({
-    this.align = Alignment.topCenter,
+    this.align = Alignment.bottomCenter,
     this.inset = EdgeInsets.zero,
     this.child,
     super.key,
