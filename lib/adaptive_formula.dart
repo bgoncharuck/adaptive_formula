@@ -2,6 +2,8 @@ library adaptive_formula;
 
 import 'package:flutter/widgets.dart';
 
+// init
+
 const _defaultFigmaScreenSize = Size(375, 812);
 
 void adaptiveFormulaInitFromBuildContext({
@@ -31,8 +33,10 @@ void adaptiveFormulaInitFromWindow({
 }) =>
     adaptiveFormulaInitFromSize(
       deviceScreenSize: Size(
-        WidgetsBinding.instance.platformDispatcher.views.first.physicalSize.width,
-        WidgetsBinding.instance.platformDispatcher.views.first.physicalSize.height,
+        WidgetsBinding
+            .instance.platformDispatcher.views.first.physicalSize.width,
+        WidgetsBinding
+            .instance.platformDispatcher.views.first.physicalSize.height,
       ),
       figmaScreenSize: figmaScreenSize,
     );
@@ -54,16 +58,29 @@ late double _deviceScreenHeight;
 late double _figmaScreenWidth;
 late double _figmaScreenHeight;
 
+/// Default orientation
+
 double adaptiveHeight(double elementHeight, {double? screenHeight}) =>
     (screenHeight ?? _deviceScreenHeight) * elementHeight / _figmaScreenHeight;
 double adaptiveWidth(double elementWidth, {double? screenWidth}) =>
     (screenWidth ?? _deviceScreenWidth) * elementWidth / _figmaScreenWidth;
 double adaptiveFontSize(TextStyle textStyle, {double? screenWidth}) =>
-    ((screenWidth ?? _deviceScreenWidth) * textStyle.fontSize! / _figmaScreenWidth).floor().toDouble();
+    ((screenWidth ?? _deviceScreenWidth) *
+            textStyle.fontSize! /
+            _figmaScreenWidth)
+        .floor()
+        .toDouble();
 double adaptiveFontSizeRaw(double fontSize, {double? screenWidth}) =>
-    ((screenWidth ?? _deviceScreenWidth) * fontSize / _figmaScreenWidth).floor().toDouble();
-TextStyle adaptiveTextStyle(TextStyle textStyle, {double? screenWidth}) => textStyle.copyWith(
-      fontSize: ((screenWidth ?? _deviceScreenWidth) * textStyle.fontSize! / _figmaScreenWidth).floor().toDouble(),
+    ((screenWidth ?? _deviceScreenWidth) * fontSize / _figmaScreenWidth)
+        .floor()
+        .toDouble();
+TextStyle adaptiveTextStyle(TextStyle textStyle, {double? screenWidth}) =>
+    textStyle.copyWith(
+      fontSize: ((screenWidth ?? _deviceScreenWidth) *
+              textStyle.fontSize! /
+              _figmaScreenWidth)
+          .floor()
+          .toDouble(),
     );
 
 EdgeInsetsGeometry adaptiveLTRB(
@@ -145,11 +162,14 @@ EdgeInsetsGeometry adaptiveSymmetricInsetOnHeight({
       vertical: vertical == null ? 0 : adaptiveHeight(vertical),
     );
 
-Size adaptiveSize(double width, double height) => Size(adaptiveWidth(width), adaptiveHeight(height));
+Size adaptiveSize(double width, double height) =>
+    Size(adaptiveWidth(width), adaptiveHeight(height));
 
-Size adaptiveSquare(double size) => Size(adaptiveWidth(size), adaptiveWidth(size));
+Size adaptiveSquare(double size) =>
+    Size(adaptiveWidth(size), adaptiveWidth(size));
 
-Size adaptiveSquareHeight(double size) => Size(adaptiveHeight(size), adaptiveHeight(size));
+Size adaptiveSquareHeight(double size) =>
+    Size(adaptiveHeight(size), adaptiveHeight(size));
 
 class AdaptiveSize extends StatelessWidget {
   const AdaptiveSize({
@@ -438,6 +458,412 @@ class AdaptiveSquareDecorated extends StatelessWidget {
   }
 }
 
+// Inversed Orientation
+
+double adaptiveIHeight(double elementHeight, {double? screenWidth}) =>
+    (screenWidth ?? _deviceScreenWidth) * elementHeight / _figmaScreenWidth;
+
+double adaptiveIWidth(double elementWidth, {double? screenHeight}) =>
+    (screenHeight ?? _deviceScreenHeight) * elementWidth / _figmaScreenHeight;
+
+double adaptiveIFontSize(TextStyle textStyle, {double? screenHeight}) =>
+    ((screenHeight ?? _deviceScreenHeight) *
+            textStyle.fontSize! /
+            _figmaScreenHeight)
+        .floor()
+        .toDouble();
+
+double adaptiveIFontSizeRaw(double fontSize, {double? screenHeight}) =>
+    ((screenHeight ?? _deviceScreenHeight) * fontSize / _figmaScreenHeight)
+        .floor()
+        .toDouble();
+
+TextStyle adaptiveITextStyle(TextStyle textStyle, {double? screenHeight}) =>
+    textStyle.copyWith(
+      fontSize: ((screenHeight ?? _deviceScreenHeight) *
+              textStyle.fontSize! /
+              _figmaScreenHeight)
+          .floor()
+          .toDouble(),
+    );
+
+EdgeInsetsGeometry adaptiveILTRB(
+  double left,
+  double top,
+  double right,
+  double bottom,
+) =>
+    EdgeInsets.fromLTRB(
+      adaptiveIWidth(left),
+      adaptiveIHeight(top),
+      adaptiveIWidth(right),
+      adaptiveIHeight(bottom),
+    );
+
+EdgeInsetsGeometry adaptiveIInset({
+  double? left,
+  double? top,
+  double? right,
+  double? bottom,
+}) =>
+    EdgeInsets.fromLTRB(
+      left == null ? 0 : adaptiveIWidth(left),
+      top == null ? 0 : adaptiveIHeight(top),
+      right == null ? 0 : adaptiveIWidth(right),
+      bottom == null ? 0 : adaptiveIHeight(bottom),
+    );
+
+EdgeInsetsGeometry adaptiveIInsetOnWidth({
+  double? left,
+  double? top,
+  double? right,
+  double? bottom,
+}) =>
+    EdgeInsets.fromLTRB(
+      left == null ? 0 : adaptiveIWidth(left),
+      top == null ? 0 : adaptiveIWidth(top),
+      right == null ? 0 : adaptiveIWidth(right),
+      bottom == null ? 0 : adaptiveIWidth(bottom),
+    );
+
+EdgeInsetsGeometry adaptiveIInsetOnHeight({
+  double? left,
+  double? top,
+  double? right,
+  double? bottom,
+}) =>
+    EdgeInsets.fromLTRB(
+      left == null ? 0 : adaptiveIHeight(left),
+      top == null ? 0 : adaptiveIHeight(top),
+      right == null ? 0 : adaptiveIHeight(right),
+      bottom == null ? 0 : adaptiveIHeight(bottom),
+    );
+
+EdgeInsetsGeometry adaptiveISymmetricInset({
+  double? horizontal,
+  double? vertical,
+}) =>
+    EdgeInsets.symmetric(
+      horizontal: horizontal == null ? 0 : adaptiveIWidth(horizontal),
+      vertical: vertical == null ? 0 : adaptiveIHeight(vertical),
+    );
+
+EdgeInsetsGeometry adaptiveISymmetricInsetOnWidth({
+  double? horizontal,
+  double? vertical,
+}) =>
+    EdgeInsets.symmetric(
+      horizontal: horizontal == null ? 0 : adaptiveIWidth(horizontal),
+      vertical: vertical == null ? 0 : adaptiveIWidth(vertical),
+    );
+
+EdgeInsetsGeometry adaptiveISymmetricInsetOnHeight({
+  double? horizontal,
+  double? vertical,
+}) =>
+    EdgeInsets.symmetric(
+      horizontal: horizontal == null ? 0 : adaptiveIHeight(horizontal),
+      vertical: vertical == null ? 0 : adaptiveIHeight(vertical),
+    );
+
+Size adaptiveISize(double width, double height) =>
+    Size(adaptiveIWidth(width), adaptiveIHeight(height));
+
+Size adaptiveISquare(double size) =>
+    Size(adaptiveIWidth(size), adaptiveIWidth(size));
+
+Size adaptiveISquareHeight(double size) =>
+    Size(adaptiveIHeight(size), adaptiveIHeight(size));
+
+class AdaptiveISize extends StatelessWidget {
+  const AdaptiveISize({
+    this.width,
+    this.height,
+    this.child,
+    super.key,
+  });
+  final double? width;
+  final double? height;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width == null ? null : adaptiveIWidth(width!),
+      height: height == null ? null : adaptiveIHeight(height!),
+      child: child,
+    );
+  }
+}
+
+class AdaptiveIWidth extends StatelessWidget {
+  const AdaptiveIWidth({
+    required this.width,
+    this.child,
+    super.key,
+  });
+  final double width;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: adaptiveIWidth(width),
+      child: child,
+    );
+  }
+}
+
+class AdaptiveIHeight extends StatelessWidget {
+  const AdaptiveIHeight({
+    required this.height,
+    this.child,
+    super.key,
+  });
+  final double height;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: adaptiveIHeight(height),
+      child: child,
+    );
+  }
+}
+
+class AdaptiveISquare extends StatelessWidget {
+  const AdaptiveISquare({
+    required this.size,
+    this.child,
+    super.key,
+  });
+  final double size;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: adaptiveIWidth(size),
+      height: adaptiveIWidth(size),
+      child: child,
+    );
+  }
+}
+
+class AdaptiveISquareHeight extends StatelessWidget {
+  const AdaptiveISquareHeight({
+    required this.size,
+    this.child,
+    super.key,
+  });
+  final double size;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: adaptiveIHeight(size),
+      height: adaptiveIHeight(size),
+      child: child,
+    );
+  }
+}
+
+class AdaptiveISizeColored extends StatelessWidget {
+  const AdaptiveISizeColored({
+    required this.color,
+    this.width,
+    this.height,
+    this.child,
+    super.key,
+  });
+  final double? width;
+  final double? height;
+  final Color color;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return ColoredBox(
+      color: color,
+      child: SizedBox(
+        width: width == null ? null : adaptiveIWidth(width!),
+        height: height == null ? null : adaptiveIHeight(height!),
+        child: child,
+      ),
+    );
+  }
+}
+
+class AdaptiveIWidthColored extends StatelessWidget {
+  const AdaptiveIWidthColored({
+    required this.width,
+    required this.color,
+    this.child,
+    super.key,
+  });
+  final double width;
+  final Color color;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return ColoredBox(
+      color: color,
+      child: SizedBox(
+        width: adaptiveIWidth(width),
+        child: child,
+      ),
+    );
+  }
+}
+
+class AdaptiveIHeightColored extends StatelessWidget {
+  const AdaptiveIHeightColored({
+    required this.height,
+    required this.color,
+    this.child,
+    super.key,
+  });
+  final double height;
+  final Color color;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return ColoredBox(
+      color: color,
+      child: SizedBox(
+        height: adaptiveIHeight(height),
+        child: child,
+      ),
+    );
+  }
+}
+
+class AdaptiveISquareColored extends StatelessWidget {
+  const AdaptiveISquareColored({
+    required this.size,
+    required this.color,
+    this.child,
+    super.key,
+  });
+  final double size;
+  final Color color;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return ColoredBox(
+      color: color,
+      child: SizedBox(
+        width: adaptiveIWidth(size),
+        height: adaptiveIWidth(size),
+        child: child,
+      ),
+    );
+  }
+}
+
+class AdaptiveISizeDecorated extends StatelessWidget {
+  const AdaptiveISizeDecorated({
+    required this.decoration,
+    this.width,
+    this.height,
+    this.child,
+    super.key,
+  });
+  final double? width;
+  final double? height;
+  final BoxDecoration decoration;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: decoration,
+      child: SizedBox(
+        width: width == null ? null : adaptiveIWidth(width!),
+        height: height == null ? null : adaptiveIHeight(height!),
+        child: child,
+      ),
+    );
+  }
+}
+
+class AdaptiveIWidthDecorated extends StatelessWidget {
+  const AdaptiveIWidthDecorated({
+    required this.width,
+    required this.decoration,
+    this.child,
+    super.key,
+  });
+  final double width;
+  final BoxDecoration decoration;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: decoration,
+      child: SizedBox(
+        width: adaptiveIWidth(width),
+        child: child,
+      ),
+    );
+  }
+}
+
+class AdaptiveIHeightDecorated extends StatelessWidget {
+  const AdaptiveIHeightDecorated({
+    required this.height,
+    required this.decoration,
+    this.child,
+    super.key,
+  });
+  final double height;
+  final BoxDecoration decoration;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: decoration,
+      child: SizedBox(
+        height: adaptiveIHeight(height),
+        child: child,
+      ),
+    );
+  }
+}
+
+class AdaptiveISquareDecorated extends StatelessWidget {
+  const AdaptiveISquareDecorated({
+    required this.size,
+    required this.decoration,
+    this.child,
+    super.key,
+  });
+  final double size;
+  final BoxDecoration decoration;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: decoration,
+      child: SizedBox(
+        width: adaptiveIWidth(size),
+        height: adaptiveIWidth(size),
+        child: child,
+      ),
+    );
+  }
+}
+
+// Pos and Void
+
 class Position extends StatelessWidget {
   const Position({
     this.align = Alignment.bottomCenter,
@@ -488,7 +914,8 @@ class AdaptiveList extends StatelessWidget {
     }
 
     return SizedBox(
-      height: adaptiveHeight(elementHeight) * count + elementSpacing * (count - 1),
+      height:
+          adaptiveHeight(elementHeight) * count + elementSpacing * (count - 1),
       child: Stack(
         children: positionedChildren,
       ),
@@ -514,7 +941,9 @@ class _AdaptiveListPos extends StatelessWidget {
       alignment: Alignment.topCenter,
       child: Padding(
         padding: EdgeInsets.only(
-          top: (adaptiveHeight(elementHeight) + adaptiveHeight(elementSpacing)) * index,
+          top:
+              (adaptiveHeight(elementHeight) + adaptiveHeight(elementSpacing)) *
+                  index,
         ),
         child: child,
       ),
